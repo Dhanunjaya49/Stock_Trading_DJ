@@ -1,4 +1,4 @@
-# Stock Trading Backend
+Stock Trading Backend
 
 Spring Boot + PostgreSQL based stock trading simulation system.
 
