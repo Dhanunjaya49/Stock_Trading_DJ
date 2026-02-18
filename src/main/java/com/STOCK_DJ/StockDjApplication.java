@@ -14,26 +14,6 @@ public class StockDjApplication {
 		SpringApplication.run(StockDjApplication.class, args);
 	}
 	
-	@Bean 
-	CommandLineRunner run(UserRepository userrepository)
-	{
-	
-	return args -> {
-		
-		if(userrepository.count()==0)
-		{
-		
-		User u1 = new User ("DJ",10000);
-		User u2 = new User ("Indu",10000);
-		
-		userrepository.save(u1);
-		userrepository.save(u2);
-		
-		
-		}
-		
-	};
-	}
 	
 
 }

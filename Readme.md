@@ -20,3 +20,15 @@ Spring Boot + PostgreSQL based stock trading simulation system.
 2. Create database `stockdb`
 3. Update application.properties with DB credentials
 4. Run StockDjApplication.java
+
+
+📅 DAY 2 (90 Minutes)
+🎯 Goal:
+
+Create Repository layer
+
+Insert a User into DB
+
+Fetch user from DB
+
+Understand how JPA works
