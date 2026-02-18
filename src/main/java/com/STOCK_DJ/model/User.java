@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//Used for repository
+	//Used for repository only
 	private Long id;
 	private String name;
 	private double balance;
