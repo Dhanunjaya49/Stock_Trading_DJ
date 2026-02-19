@@ -26,9 +26,15 @@ Spring Boot + PostgreSQL based stock trading simulation system.
 🎯 Goal:
 
 Create Repository layer
-
 Insert a User into DB
-
 Fetch user from DB
-
 Understand how JPA works
+
+
+DAY 3
+
+What Service layer does
+Dependency injection
+Constructor injection
+Clean separation of concerns
+Basic business validation

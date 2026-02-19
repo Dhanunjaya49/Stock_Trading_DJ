@@ -24,6 +24,13 @@ public class User {
 			
 		}
 	
+	@Override
+	public String toString()
+	{
+		return "ID "+ id +" Name "+name+" Balance "+ balance;
+	}
+	
+
 	
 	
 	
