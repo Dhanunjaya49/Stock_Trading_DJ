@@ -1,6 +1,13 @@
 package com.STOCK_DJ.model;
 
 import jakarta.persistence.*;
+import lombok.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 
 
 @Entity
@@ -13,29 +20,10 @@ public class User {
 	private String name;
 	private double balance;
 	
-	public User()
-	{
-	}
-		
 	public User(String name,double balance)
 		{
 			this.name = name;
 			this.balance=balance;
 			
 		}
-	
-	@Override
-	public String toString()
-	{
-		return "ID "+ id +" Name "+name+" Balance "+ balance;
-	}
-	
-
-	
-	
-	
-	
-	
-	
-
 }

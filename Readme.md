@@ -38,3 +38,81 @@ Dependency injection
 Constructor injection
 Clean separation of concerns
 Basic business validation
+
+# Stock Trading Backend
+
+Spring Boot + PostgreSQL based stock trading simulation system.
+
+---
+
+## Tech Stack
+
+- Java 17
+- Spring Boot
+- Spring Data JPA
+- PostgreSQL
+- Hibernate
+- Lombok
+
+---
+
+# Day 4 – REST API Layer (User)
+
+### ✅ Implemented:
+- Created `UserController`
+- Added REST endpoints:
+  - `POST /users` → Create user
+  - `GET /users` → Get all users
+- Used `@RequestBody` for JSON mapping
+- Connected Service layer properly
+- Tested using Postman
+- Verified DB persistence in pgAdmin
+
+### 🔍 Concepts Learned:
+- RESTful endpoint design
+- Controller → Service separation
+- JSON to Object mapping
+- Why DTOs are important (future improvement)
+
+---
+
+# Day 5 – Stock Module
+
+### ✅ Implemented:
+- Created `Stock` entity
+- Added:
+  - `symbol` (unique business key)
+  - `name`
+  - `price`
+- Added unique constraint on `symbol`
+- Created `StockRepository`
+  - `findBySymbol`
+  - `existsBySymbol`
+- Implemented `StockService`
+  - Validation (price > 0)
+  - Duplicate prevention
+  - Fetch by symbol
+- Created `StockController`
+  - `POST /stocks`
+  - `GET /stocks`
+  - `GET /stocks/{symbol}`
+- Tested full flow using Postman
+- Stored multiple Nifty stocks manually
+- Verified persistence in PostgreSQL
+
+---
+
+## Architecture So Far
+
+Controller → Service → Repository → Database
+
+- Business logic isolated in Service
+- Repository handles DB operations
+- Controller handles HTTP layer
+- Unique constraints handled at both Service + DB level
+
+---
+
+## System Ready For:
+
+Next Phase → Order Entity + Buy Logic + Transaction Management
