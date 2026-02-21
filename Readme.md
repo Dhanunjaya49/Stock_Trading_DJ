@@ -111,8 +111,17 @@ Controller → Service → Repository → Database
 - Controller handles HTTP layer
 - Unique constraints handled at both Service + DB level
 
----
 
-## System Ready For:
 
-Next Phase → Order Entity + Buy Logic + Transaction Management
+📅 DAY 6 — Order Entity + Buy Logic + Transaction
+🎯 Goal Today
+
+When user buys stock:
+
+1️⃣ Check user exists
+2️⃣ Check stock exists
+3️⃣ Check sufficient balance
+4️⃣ Deduct balance
+5️⃣ Create order
+6️⃣ Store purchase price snapshot
+7️⃣ Wrap everything in one transaction
