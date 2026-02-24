@@ -34,7 +34,7 @@ public class OrderService {
 		User user = userrepository.findById(userid).orElseThrow(() -> new IllegalArgumentException("User not found"));
 		Stock stock = stockrepository.findBySymbol(symbol).orElseThrow(() -> new IllegalArgumentException("Stock not found"));
 		
-		double totalprice = quantity* stock.getPrice();
+		double totalprice = quantity * stock.getPrice();
 		
 		
 		
@@ -44,7 +44,40 @@ public class OrderService {
 		}
 		
 		user.setBalance(user.getBalance() - totalprice);
-		Order order = new Order(user,stock,quantity,stock.getPrice(),totalprice);
+		Order order = new Order(user,stock,quantity,stock.getPrice(),totalprice,OrderType.BUY);
+		
+		return orderrepository.save(order);
+	}
+	
+	@Transactional
+	public Order SellStock(Long userid,String symbol,int quantity)
+	{
+		if(quantity<=0)
+		{
+			throw new IllegalArgumentException("No Stocks Left");
+		}
+		
+		User user = userrepository.findById(userid).orElseThrow(() -> new IllegalArgumentException("user does not exist"));
+		
+		Stock stock = stockrepository.findBySymbol(symbol).orElseThrow(() -> new IllegalArgumentException("stock does not exist"));
+		
+		int ownedShares = orderrepository.findByUserId(userid).stream()
+		        .filter(o -> o.getStock().getSymbol().equalsIgnoreCase(symbol))
+		        .mapToInt(o -> o.getType() == OrderType.BUY
+		                ? o.getQuantity()
+		                : -o.getQuantity()).sum();
+	
+		System.out.println("owned shares"+ownedShares);
+		if(ownedShares < quantity)
+		{
+			throw new IllegalArgumentException("Not enough shares to sell");
+		}
+		
+		double totprice = stock.getPrice() * quantity;
+		
+		user.setBalance(user.getBalance() + totprice);
+		
+		Order order = new Order(user,stock,quantity,stock.getPrice(),totprice,OrderType.SELL);
 		
 		return orderrepository.save(order);
 	}

@@ -19,10 +19,16 @@ public class OrderController {
 		this.orderservice = orderservice;
 	}
 	
-	@PostMapping
+	@PostMapping("/buy")
 	public Order buyStock(@RequestParam Long Userid,@RequestParam String symbol,@RequestParam int quantity)
 	{
 		return orderservice.BuyStock(quantity, Userid, symbol);
+	}
+	
+	@PostMapping("/sell")
+	public Order SellStock(@RequestParam Long Userid,@RequestParam String symbol,@RequestParam int quantity)
+	{
+		return orderservice.SellStock(Userid, symbol, quantity);
 	}
 
 }

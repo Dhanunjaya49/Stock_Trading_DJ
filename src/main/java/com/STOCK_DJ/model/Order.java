@@ -2,6 +2,8 @@ package com.STOCK_DJ.model;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,17 +37,21 @@ public class Order {
 	@JoinColumn(name="stock_id")
 	private Stock stock;
 	
+	@Enumerated(EnumType.STRING)
+	private OrderType type;
+	
 	private int quantity;
 	private double purchasedprice;
 	private double totalamount;
 	private LocalDateTime createdat;
 	
-	public Order(User user, Stock stock,int quantity,double purchasedprice,double totalamount)
+	public Order(User user, Stock stock,int quantity,double purchasedprice,double totalamount,OrderType type)
 	{
 		this.user = user;
 		this.stock = stock;
 		this.quantity=quantity;
 		this.purchasedprice = purchasedprice;
+		this.type = type;
 		this.totalamount = totalamount;
 		this.createdat = LocalDateTime.now();
 	}
