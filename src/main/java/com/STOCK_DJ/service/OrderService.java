@@ -62,7 +62,7 @@ public class OrderService {
 		Stock stock = stockrepository.findBySymbol(symbol).orElseThrow(() -> new IllegalArgumentException("stock does not exist"));
 		
 		int ownedShares = orderrepository.findByUserId(userid).stream()
-		        .filter(o -> o.getStock().getSymbol().equalsIgnoreCase(symbol))
+		        .filter(o -> o.getStock().getSymbol().equals(symbol))
 		        .mapToInt(o -> o.getType() == OrderType.BUY
 		                ? o.getQuantity()
 		                : -o.getQuantity()).sum();
