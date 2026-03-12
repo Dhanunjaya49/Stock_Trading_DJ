@@ -135,3 +135,13 @@ Wrong repository method
 Case sensitivity in paths
 Constructor assignment bugs
 Relationship-based query derivation
+
+
+# Day 8 – Portfolio API Implementation
+
+Today we implemented the **Portfolio API** for the Stock Trading Backend.
+This endpoint calculates and returns the **stocks currently owned by a user** based on all their past buy and sell transactions.
+
+The system follows a **ledger-based approach**, where every buy/sell action is stored as an order.
+Portfolio holdings are derived by replaying these transactions.
+
