@@ -125,3 +125,13 @@ When user buys stock:
 5️⃣ Create order
 6️⃣ Store purchase price snapshot
 7️⃣ Wrap everything in one transaction
+
+
+DAY 7 :
+
+Enum mapping issues
+DB column type mismatch
+Wrong repository method
+Case sensitivity in paths
+Constructor assignment bugs
+Relationship-based query derivation

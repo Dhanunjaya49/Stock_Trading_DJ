@@ -1,5 +1,9 @@
 package com.STOCK_DJ.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 import com.STOCK_DJ.Repository.OrderRepository;
@@ -72,7 +76,6 @@ public class OrderService {
 		{
 			throw new IllegalArgumentException("Not enough shares to sell");
 		}
-		
 		double totprice = stock.getPrice() * quantity;
 		
 		user.setBalance(user.getBalance() + totprice);
@@ -80,6 +83,29 @@ public class OrderService {
 		Order order = new Order(user,stock,quantity,stock.getPrice(),totprice,OrderType.SELL);
 		
 		return orderrepository.save(order);
+	}
+	
+	
+	public Map<String,Integer> getportfolio(Long Userid)
+	{
+		List<Order> orders = orderrepository.findByUserId(Userid);
+		Map<String,Integer> portfolio = new HashMap<>();
+		User user = userrepository.findById(Userid).orElseThrow(() -> new IllegalArgumentException("User Not Found"));
+		
+		String name = user.getName();		
+		
+		for(Order o : orders)
+		{
+			String symbol = o.getStock().getSymbol();
+			
+			int quantity = o.getType()== OrderType.BUY ? +o.getQuantity() : -o.getQuantity();
+			
+			portfolio.put(symbol,portfolio.getOrDefault(symbol,0)+quantity);
+		}
+		
+		return portfolio;
+		
+		
 	}
 }
 
