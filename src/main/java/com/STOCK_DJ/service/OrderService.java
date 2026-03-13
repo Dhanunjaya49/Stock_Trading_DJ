@@ -3,12 +3,12 @@ package com.STOCK_DJ.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.stereotype.Service;
 
 import com.STOCK_DJ.Repository.OrderRepository;
 import com.STOCK_DJ.Repository.StockRepository;
 import com.STOCK_DJ.Repository.UserRepository;
+import com.STOCK_DJ.dto.PortfolioResponse;
 import com.STOCK_DJ.model.*;
 
 import jakarta.transaction.Transactional;
@@ -86,13 +86,11 @@ public class OrderService {
 	}
 	
 	
-	public Map<String,Integer> getportfolio(Long Userid)
+	public PortfolioResponse  getportfolio(Long Userid)
 	{
 		List<Order> orders = orderrepository.findByUserId(Userid);
 		Map<String,Integer> portfolio = new HashMap<>();
 		User user = userrepository.findById(Userid).orElseThrow(() -> new IllegalArgumentException("User Not Found"));
-		
-		String name = user.getName();		
 		
 		for(Order o : orders)
 		{
@@ -103,8 +101,7 @@ public class OrderService {
 			portfolio.put(symbol,portfolio.getOrDefault(symbol,0)+quantity);
 		}
 		
-		return portfolio;
-		
+		return new PortfolioResponse(user.getName(), portfolio);
 		
 	}
 }

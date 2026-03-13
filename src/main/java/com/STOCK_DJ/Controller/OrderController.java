@@ -1,6 +1,5 @@
 package com.STOCK_DJ.Controller;
 
-import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.STOCK_DJ.dto.PortfolioResponse;
 import com.STOCK_DJ.model.Order;
 import com.STOCK_DJ.service.OrderService;
 
@@ -36,7 +36,7 @@ public class OrderController {
 	}
 	
 	@GetMapping("/portfolio/{Userid}")
-	public Map<String,Integer> getportfolio(@PathVariable Long Userid)
+	public  PortfolioResponse getportfolio(@PathVariable Long Userid)
 	{
 		return orderservice.getportfolio(Userid);
 		
