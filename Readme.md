@@ -145,3 +145,47 @@ This endpoint calculates and returns the **stocks currently owned by a user** ba
 The system follows a **ledger-based approach**, where every buy/sell action is stored as an order.
 Portfolio holdings are derived by replaying these transactions.
 
+# Day 9 – DTO Introduction & Portfolio API Improvement
+
+## Overview
+
+Today we improved the **Portfolio API** by introducing a **DTO (Data Transfer Object)** instead of returning raw `Map<String,Object>` structures.
+
+This makes the API cleaner, type-safe, and closer to production-level backend design.
+
+---
+
+## Why DTO Was Introduced
+
+Previously the portfolio endpoint returned:
+
+```json
+{
+  "name": "Dhanu",
+  "stocks": {
+    "RELIANCE": 3,
+    "TCS": 1
+  }
+}
+```
+
+This was implemented using:
+
+```java
+Map<String,Object>
+```
+
+However, using raw maps in APIs is not recommended because:
+
+* It lacks type safety
+* Harder to maintain
+* Difficult for frontend developers to understand structure
+* Not scalable when response grows
+
+DTOs solve these problems by defining **explicit response structures**.
+
+---
+
+
+
+
