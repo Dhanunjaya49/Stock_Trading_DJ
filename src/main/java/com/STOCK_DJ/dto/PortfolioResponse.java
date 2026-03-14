@@ -1,13 +1,13 @@
 package com.STOCK_DJ.dto;
 
-import java.util.Map;
+import java.util.List;
 
 public class PortfolioResponse {
 	
 	private String name;
-	private Map<String,Integer> portfolio;
+	private List<StockHoldingdto> portfolio;
 	
-	public PortfolioResponse(String name,Map<String,Integer> portfolio)
+	public PortfolioResponse(String name,List<StockHoldingdto> portfolio)
 	{
 		this.name = name;
 		this.portfolio = portfolio;
@@ -18,11 +18,8 @@ public class PortfolioResponse {
 		return name;
 	}
 	
-	public Map<String,Integer> getPortfolio()
+	public List<StockHoldingdto> getPortfolio()
 	{
 		return portfolio;
 	}
-	
-	
-
 }

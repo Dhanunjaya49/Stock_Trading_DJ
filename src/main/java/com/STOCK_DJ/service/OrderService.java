@@ -1,5 +1,6 @@
 package com.STOCK_DJ.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import com.STOCK_DJ.Repository.OrderRepository;
 import com.STOCK_DJ.Repository.StockRepository;
 import com.STOCK_DJ.Repository.UserRepository;
 import com.STOCK_DJ.dto.PortfolioResponse;
+import com.STOCK_DJ.dto.StockHoldingdto;
 import com.STOCK_DJ.model.*;
 
 import jakarta.transaction.Transactional;
@@ -89,7 +91,7 @@ public class OrderService {
 	public PortfolioResponse  getportfolio(Long Userid)
 	{
 		List<Order> orders = orderrepository.findByUserId(Userid);
-		Map<String,Integer> portfolio = new HashMap<>();
+		Map<String,Integer> portfoliomap = new HashMap<>();
 		User user = userrepository.findById(Userid).orElseThrow(() -> new IllegalArgumentException("User Not Found"));
 		
 		for(Order o : orders)
@@ -98,10 +100,16 @@ public class OrderService {
 			
 			int quantity = o.getType()== OrderType.BUY ? +o.getQuantity() : -o.getQuantity();
 			
-			portfolio.put(symbol,portfolio.getOrDefault(symbol,0)+quantity);
+			portfoliomap.put(symbol,portfoliomap.getOrDefault(symbol,0)+quantity);
 		}
 		
-		return new PortfolioResponse(user.getName(), portfolio);
+		List<StockHoldingdto> portfoliolist = new ArrayList<>();
+		for(Map.Entry<String,Integer> entry : portfoliomap.entrySet())
+		{
+			portfoliolist.add(new StockHoldingdto(entry.getKey(),entry.getValue()));
+		}
+		
+		return new PortfolioResponse(user.getName(), portfoliolist);
 		
 	}
 }
