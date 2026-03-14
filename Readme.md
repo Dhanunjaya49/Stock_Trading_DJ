@@ -186,6 +186,12 @@ DTOs solve these problems by defining **explicit response structures**.
 
 ---
 
+under Future Improvements:
+
+Introduced idea of StockHoldingDTO to structure portfolio entries for frontend-friendly responses.
+
+Planned migration from Map<String,Integer> to List<StockHoldingDTO> for better API design.
+
 
 
 
