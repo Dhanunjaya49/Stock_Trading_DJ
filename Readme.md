@@ -184,13 +184,39 @@ However, using raw maps in APIs is not recommended because:
 
 DTOs solve these problems by defining **explicit response structures**.
 
----
+Day 10 – Preparing for Live Stock Price Updates
+Overview
 
-under Future Improvements:
+Today the focus was on reviewing the current architecture of the Stock Trading Backend and planning the next major feature: live stock price updates.
 
-Introduced idea of StockHoldingDTO to structure portfolio entries for frontend-friendly responses.
+Until now, stock prices stored in the database are static. However, in real trading platforms, prices change frequently. To simulate this behavior, the system will be enhanced to periodically update stock prices.
 
-Planned migration from Map<String,Integer> to List<StockHoldingDTO> for better API design.
+Current System Status
+
+The backend now supports the core trading workflow:
+
+Entities Implemented
+
+User
+
+Stock
+
+Order
+
+Business Logic
+
+Buy stock with balance validation
+
+Sell stock with share ownership validation
+
+Orders stored as transaction ledger
+
+Portfolio System
+
+Portfolio is calculated dynamically using transaction history:
+
+BUY  → +quantity
+SELL → -quantity
 
 
 
