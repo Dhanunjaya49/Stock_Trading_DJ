@@ -69,10 +69,8 @@ public class OrderService {
 		
 		int ownedShares = orderrepository.findByUserId(userid).stream()
 		        .filter(o -> o.getStock().getSymbol().equals(symbol))
-		        .mapToInt(o -> o.getType() == OrderType.BUY
-		                ? o.getQuantity()
-		                : -o.getQuantity()).sum();
-	
+		        .mapToInt(o -> o.getType() == OrderType.BUY ? +o.getQuantity() : -o.getQuantity()).sum();
+		
 		System.out.println("owned shares"+ownedShares);
 		if(ownedShares < quantity)
 		{
@@ -88,7 +86,7 @@ public class OrderService {
 	}
 	
 	
-	public PortfolioResponse  getportfolio(Long Userid)
+	public PortfolioResponse getportfolio(Long Userid)
 	{
 		List<Order> orders = orderrepository.findByUserId(Userid);
 		Map<String,Integer> portfoliomap = new HashMap<>();

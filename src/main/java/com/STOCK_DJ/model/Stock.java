@@ -31,7 +31,7 @@ public class Stock {
 	@Column(unique=true,nullable = false)
 	private String name;
 	
-	@Column(unique=true,nullable = false)
+	@Column(nullable = false)
 	private double price;
 
 	public Stock(String symbol,String name,double price)

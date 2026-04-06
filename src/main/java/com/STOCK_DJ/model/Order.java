@@ -43,7 +43,7 @@ public class Order {
 	private int quantity;
 	private double purchasedprice;
 	private double totalamount;
-	private LocalDateTime createdat;
+	private LocalDateTime operationat;
 	
 	public Order(User user, Stock stock,int quantity,double purchasedprice,double totalamount,OrderType type)
 	{
@@ -53,7 +53,7 @@ public class Order {
 		this.purchasedprice = purchasedprice;
 		this.type = type;
 		this.totalamount = totalamount;
-		this.createdat = LocalDateTime.now();
+		this.operationat = LocalDateTime.now();
 	}
 	
 	

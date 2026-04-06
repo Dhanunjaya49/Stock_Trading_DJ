@@ -2,12 +2,15 @@ package com.STOCK_DJ.Controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.STOCK_DJ.Repository.UserRepository;
 import com.STOCK_DJ.model.User;
 import com.STOCK_DJ.service.Userservice;
 
@@ -17,24 +20,26 @@ public class UserController {
 	
 	private final Userservice userservice;
 	
-	public UserController(Userservice userservice)
+	public UserController(Userservice userservice,UserRepository userrepository)
 	{
 		this.userservice = userservice;
 	}
 	
-	@PostMapping
+	@PostMapping("/createman")
 	public User createUser(@RequestBody User user)
 	{
 		return userservice.CreateUser(user.getName(),user.getBalance());
 	}
-	
 	@GetMapping
 	public List<User> findall()
 	{
 		return userservice.getall();
 	}
 	
+	@DeleteMapping("/Delman/{id}")
+	public void DelUser(@PathVariable Long id)
+	{
+		userservice.DeleteUser(id);
+	}
 	
-	
-
 }

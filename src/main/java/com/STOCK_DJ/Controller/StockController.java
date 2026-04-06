@@ -40,7 +40,6 @@ public class StockController {
 	public Stock getbysymbol(@PathVariable String symbol)
 	{
 		return stockservice.getbySymbol(symbol);
-		
 	}
 	
 	

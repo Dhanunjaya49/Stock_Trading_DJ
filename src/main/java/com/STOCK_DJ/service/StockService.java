@@ -2,6 +2,7 @@ package com.STOCK_DJ.service;
 
 import java.util.List;
 
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import com.STOCK_DJ.Repository.StockRepository;
@@ -44,14 +45,13 @@ public class StockService {
 	
 	public Stock getbySymbol(String symbol)
 	{
-		return stockrepository.findBySymbol(symbol).orElseThrow(() -> new IllegalArgumentException("No stock exits"));
+		return stockrepository.findBySymbol(symbol).orElseThrow(() -> new IllegalArgumentException("No stock exits12435"));
 	}
 	
 	@Transactional
 	public void updatePrice(String symbol,double newprice)
 	{
 		Stock stock = getbySymbol(symbol);
-		
 		if(newprice<=0)
 		{
 			throw new IllegalArgumentException("Invalid Price");

@@ -9,6 +9,7 @@ import com.STOCK_DJ.model.Order;
 public interface OrderRepository extends JpaRepository<Order,Long> {
 
 	List<Order> findByUserId(Long userid);
+	boolean existsByUserId(Long userid);
 	
 
 

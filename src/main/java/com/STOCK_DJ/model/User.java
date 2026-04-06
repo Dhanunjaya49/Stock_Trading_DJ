@@ -15,7 +15,6 @@ import lombok.*;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//Used for repository
 	private Long id;
 	private String name;
 	private double balance;
@@ -24,6 +23,5 @@ public class User {
 		{
 			this.name = name;
 			this.balance=balance;
-			
 		}
 }
